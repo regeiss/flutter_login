@@ -8,7 +8,7 @@ class DashboardScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashboard"),
+        title: const Text("Dashboard"),
         automaticallyImplyLeading: false,
       ),
       body: Center(
@@ -18,22 +18,22 @@ class DashboardScreen extends HookConsumerWidget {
           children: [
             ref.watch(getAuthenticatedUserProvider).when(
                   loading: () => const CircularProgressIndicator(),
-                  data: (user) => Text("Welcome, ${user.username}"),
+                  data: (user) => Text("Bem vindo, ${user.username}"),
                   error: (error, stackTrace) {
                     debugPrint(error.toString());
                     return const Text('User information is not available!');
                   },
                 ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
                 onPressed: () async {
                   final isCleared = await ref.read(resetStorage);
-                  debugPrint("IS CLEARED ${isCleared}");
+                  debugPrint("IS CLEARED $isCleared");
                   if (isCleared) {
                     Navigator.popAndPushNamed(context, 'Login');
                   }
                 },
-                child: Text("Logout"))
+                child: const Text("Logout"))
           ],
         ),
       ),

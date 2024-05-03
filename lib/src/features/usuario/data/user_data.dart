@@ -1,4 +1,6 @@
 class UserResponse {
+  T? tryCast<T>(dynamic object) => object is T ? object : null;
+
   UserResponse({
     required this.jwt,
     required this.user,

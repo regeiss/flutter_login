@@ -10,16 +10,14 @@ class LoginScreen extends StatefulHookConsumerWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> 
-{
-    TextEditingController email = TextEditingController();
-    TextEditingController password = TextEditingController();
-    bool _isHidden = true;
+class _LoginScreenState extends ConsumerState<LoginScreen> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  bool _isHidden = true;
 
   @override
-  void initState() 
-  {
-    email.text = "miftahulinc@gmail.com"; //innitail value of text field
+  void initState() {
+    email.text = "miftahulinc@gmail.com";
     password.text = "huda12345";
     super.initState();
   }
@@ -32,9 +30,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
 
   void showSnackbar(BuildContext context, String text) {
     final snackBar = SnackBar(
-      content: Text(text),
-      duration: const Duration(seconds: 5),
-    );
+        elevation: 6.0,
+        backgroundColor: Color.fromARGB(255, 88, 87, 87),
+        behavior: SnackBarBehavior.floating,
+        content: Text(text),
+        duration: const Duration(seconds: 5));
+
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -42,7 +43,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login - protótipo"),
+        title: const Text("Login Web- protótipo"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30),
@@ -52,21 +53,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
               controller: email,
               decoration: const InputDecoration(
                 labelText: "Email",
-                icon: Icon(Icons.people), //icon at head of input
+                icon: Icon(Icons.people),
               ),
             ),
             TextField(
               controller: password,
               obscureText: _isHidden,
               decoration: InputDecoration(
-                icon: const Icon(Icons.lock), //icon at head of input
+                icon: const Icon(Icons.lock),
                 labelText: "Senha",
                 suffixIcon: IconButton(
                   onPressed: _togglePasswordView,
                   icon: Icon(
                     _isHidden ? Icons.visibility : Icons.visibility_off,
                   ),
-                ), //icon at tail of input
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -99,7 +100,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen>
                   ),
                 ),
               ],
-            )
+            ),
+            const Image(image: AssetImage('assets/images/logo.jpg')),
           ],
         ),
       ),

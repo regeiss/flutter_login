@@ -25,6 +25,7 @@ class UserRepositoryImpl implements UserRepository
     );
   }
 
+  @override
   Future<dynamic> login(UserRequest request) async 
   {
     try   
@@ -32,7 +33,7 @@ class UserRepositoryImpl implements UserRepository
       final response = await _dio.post(Endpoints.loginURL, data: request.toJson());
       return UserResponse.fromJson(response.data);
     }
-    on DioException 
+    on DioException   
     catch (ex) 
     {
       return ErrorResponse.fromJson(ex.response?.data);
